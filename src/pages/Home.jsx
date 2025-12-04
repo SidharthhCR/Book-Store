@@ -49,7 +49,7 @@ const Home = () => {
   </div>
   {/* section-3 */}
   <div className="section-3 grid">
-    <div class="grid grid-cols-2 ">
+    <div className="grid grid-cols-2 ">
   <div class=" mx-20">
   <h1 className='text-2xl text-center'>FEATURED  AUTHORS</h1>
   <h1 className='text-xl text-center'>Captivates with every word</h1>

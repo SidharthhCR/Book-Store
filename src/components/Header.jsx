@@ -1,6 +1,8 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { Link } from 'react-router-dom'
+
 
 const Header = () => {
     return (
@@ -14,7 +16,7 @@ const Header = () => {
                     <span><FontAwesomeIcon icon={faInstagram}/></span>
                     <span><FontAwesomeIcon icon={faTwitter}/></span>
                     <span><FontAwesomeIcon icon={faFacebook}/></span>
-                    <button className='border rounded-3xl font-bold hover:bg-green-500 hover:text-black m-2 p-3'>Login</button>
+                   <Link to={'/login'}>  <button className='border rounded-3xl font-bold hover:bg-green-500 hover:text-black m-2 p-3'>Login</button></Link>
                 </div>
             </div>
             <div className='bg-blue-950 flex justify-center gap-4 ' style={{height:'45px'}}>
