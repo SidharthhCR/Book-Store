@@ -8,6 +8,8 @@ import Auth from './pages/Auth'
 import Pnf from './pages/Pnf'
 import { useState } from 'react'
 import Loader from './components/Loader'
+import { Slide, ToastContainer } from 'react-toastify'
+
 
 
 
@@ -29,6 +31,21 @@ function App() {
 
           <Route path='/*' element={<Pnf/>}/>
     </Routes>
+
+<ToastContainer
+position="top-center"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick={false}
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="dark"
+transition={Slide}
+/>
+
     </>
   )
 }
