@@ -55,6 +55,7 @@ const Auth = ({ insideRegister }) => {
         toast.success("Successfully login")
 
         localStorage.setItem('token', apiResponse.data.token)
+        navigate("/")
       } else {
         toast.error(apiResponse.response.data.message)
       }
