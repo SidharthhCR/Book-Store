@@ -1,0 +1,9 @@
+1. npm i @react-oauth/google.
+2.Google Console-
+  ->create a new project.
+  ->credentail > consent screen > fill details > get client id
+client id = "982634079596-i38ofdt1it8gqn6fi31p2vvfrh2ofsqb.apps.googleusercontent.com"
+
+3. inside main.jsx
+ import@react-oauth/google
+  

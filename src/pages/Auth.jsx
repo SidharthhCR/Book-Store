@@ -2,8 +2,11 @@ import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { use, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { loginUser, registerUser } from '../services/allApi'
+import { googleLoginAPI, loginUser, registerUser } from '../services/allApi'
 import { toast } from 'react-toastify'
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
+
 
 
 
@@ -64,13 +67,37 @@ const Auth = ({ insideRegister }) => {
       console.log(error)
     }
   }
+
+  const decodeFn = async(credentials)=>{
+    console.log(credentials)
+
+    let decodedData = jwtDecode(credentials.credential)
+    console.log(decodedData)
+
+    let payload ={
+      userName:decodedData.name,
+      email:decodedData.email,
+      proPic:decodedData.pictures
+    }
+
+    let apiResponse = await googleLoginAPI(payload)
+    console.log(apiResponse)
+
+    if(apiResponse.status==200 || apiResponse.status==201){
+      toast.success(apiResponse.data.message)
+      localStorage.setItem('token',apiResponse.data.token)
+      navigate('/')
+    }else{
+      toast.error(apiResponse.response.data.message);
+    }
+  }
   return (
     <>
       <div className="auth">
         <h1 className='text-center text-4xl '>BOOK STORE</h1>
         <div className='flex  justify-center my-20'>
 
-          <div className='h-[500px] w-[450px] bg-blue-950 rounded-2xl   '>
+          <div className='h-[600px] w-[450px] bg-blue-950 rounded-2xl   '>
             <h1 className='text-center p-2 text-white'>
               {insideRegister ? 'Register' : 'Login'}
             </h1>
@@ -110,6 +137,16 @@ const Auth = ({ insideRegister }) => {
             }
 
             <p className='text-white mx-15'>-----------------------------or--------------------------</p>
+
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+               decodeFn(credentialResponse)
+              }}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            />
+
             {
               insideRegister ? <div>
 

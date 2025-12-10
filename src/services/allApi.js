@@ -10,3 +10,7 @@ export const registerUser = async(reqBody)=>{
 export const loginUser = async (reqBody)=>{
     return await axiosConfig(`post`,baseURL+'/loginUser',reqBody)
 }
+
+export const googleLoginAPI = async (reqBody)=>{
+    return await axiosConfig(`post`,baseURL+'/googleLogin',reqBody)
+}
