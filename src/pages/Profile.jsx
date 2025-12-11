@@ -12,15 +12,18 @@ const Profile = () => {
     const [sellBookFlag, setSellBookFlag] = useState(true)
     const [bookStatusFlag, setBookStatusFlag] = useState(false)
     const [purchaseHistoryFlag, setPurchaseHistoryFlag] = useState(false)
-    
-    const [preview,setPreview]=useState("https://cdn-icons-png.freepik.com/512/8136/8136031.png")
 
-    const onImageClick=(e)=>{
+    const [preview, setPreview] = useState("https://cdn-icons-png.freepik.com/512/8136/8136031.png")
+
+    const [previewArray,setPreviewArray]=useState([])
+
+    const onImageClick = (e) => {
         console.log(e.target.files[0])
 
-        let imgURl=URL.createObjectURL(e.target.files[0])
+        let imgURl = URL.createObjectURL(e.target.files[0])
         console.log(imgURl)
         setPreview(imgURl)
+        setPreviewArray([...previewArray,imgURl])
     }
     return (
         <div>
@@ -75,82 +78,108 @@ const Profile = () => {
                     <h1 className="text-4xl text-center py-10">Book Details</h1>
                     <div className="flex justify-around gap-2" >
                         <div className="flex flex-col gap-4 ">
-                            <input 
-                            placeholder="Title" 
-                            type="text" 
-                            className="w-100 p-2 rounded-xl
+                            <input
+                                placeholder="Title"
+                                type="text"
+                                className="w-100 p-2 rounded-xl
                              text-black bg-white" />
 
-                              <input 
-                            placeholder="Author" 
-                            type="text" 
-                            className="w-100 p-2 rounded-xl
+                            <input
+                                placeholder="Author"
+                                type="text"
+                                className="w-100 p-2 rounded-xl
                              text-black bg-white" />
 
-                              <input 
-                            placeholder="Number of pages" 
-                            type="number" 
-                            className="w-100 p-2 rounded-xl
+                            <input
+                                placeholder="Number of pages"
+                                type="number"
+                                className="w-100 p-2 rounded-xl
                              text-black bg-white" />
 
-                               <input 
-                            placeholder="Image URL" 
-                            type="text" 
-                            className="w-100 p-2 rounded-xl
+                            <input
+                                placeholder="Image URL"
+                                type="text"
+                                className="w-100 p-2 rounded-xl
                              text-black bg-white" />
 
-                               <input 
-                            placeholder="Price" 
-                            type="number" 
-                            className="w-100 p-2 rounded-xl
+                            <input
+                                placeholder="Price"
+                                type="number"
+                                className="w-100 p-2 rounded-xl
                              text-black bg-white" />
 
-                               <input 
-                            placeholder="Discpount Price" 
-                            type="number" 
-                            className="w-100 p-2 rounded-xl
+                            <input
+                                placeholder="Discpount Price"
+                                type="number"
+                                className="w-100 p-2 rounded-xl
                              text-black bg-white" />
 
                             <textarea placeholder="Abstract" name="" id=""
-                            className="bg-white text-black rounded-xl p-5"
+                                className="bg-white text-black rounded-xl p-5"
                             ></textarea>
 
-                             
+
                         </div>
-                        <div  className="flex flex-col gap-4">
-                             <input 
-                            placeholder="Publisher" 
-                            type="text" 
-                            className="w-100 p-2 rounded-xl
+                        <div className="flex flex-col gap-4">
+                            <input
+                                placeholder="Publisher"
+                                type="text"
+                                className="w-100 p-2 rounded-xl
                              text-black bg-white" />
 
-                              <input 
-                            placeholder="Language" 
-                            type="text" 
-                            className="w-100 p-2 rounded-xl
+                            <input
+                                placeholder="Language"
+                                type="text"
+                                className="w-100 p-2 rounded-xl
                              text-black bg-white" />
 
-                              <input 
-                            placeholder="ISBN" 
-                            type="text" 
-                            className="w-100 p-2 rounded-xl
+                            <input
+                                placeholder="ISBN"
+                                type="text"
+                                className="w-100 p-2 rounded-xl
                              text-black bg-white" />
 
-                              <input 
-                            placeholder="Category" 
-                            type="text" 
-                            className="w-100 p-2 rounded-xl
+                            <input
+                                placeholder="Category"
+                                type="text"
+                                className="w-100 p-2 rounded-xl
                              text-black bg-white" />
 
-                             <label htmlFor="imgupload">
-                                <input 
-                                onChange={(e)=>onImageClick(e)}
-                                className="hidden"
-                                type="file" id="imgupload" />
-                             <img
-                             className="w-75"
-                             src={preview} alt="" />
-                             </label>
+                            <label htmlFor="imgupload">
+                                <input
+                                    onChange={(e) => onImageClick(e)}
+                                    className="hidden"
+                                    type="file" id="imgupload" />
+                                <img
+                                    className="w-75"
+                                    src={preview} alt="" />
+                            </label>
+                            {
+                                previewArray.length>0 &&  <div className="flex gap-3">
+                                    {
+                                        previewArray.map((eachPreview=>(
+                                            <img 
+                                            className="w-25"
+                                            src={eachPreview} alt="" />
+                                        )))
+                                    }
+
+                                    {
+                                        previewArray.length<3 &&  <label htmlFor="plus">
+                                    <input 
+                                    onChange={(e)=>onImageClick(e)}
+                                    className="hidden"
+                                     type="file" 
+                                     id="plus" />
+                                    <img 
+                                    className="w-15" 
+                                    src="https://www.freeiconspng.com/thumbs/plus-icon/plus-icon-black-2.png" alt="" />
+                                </label>
+                                    }
+                               
+                            </div>
+                            }
+                            
                         </div>
                     </div>
 
