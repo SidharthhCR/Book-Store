@@ -9,6 +9,7 @@ import Pnf from './pages/Pnf'
 import { useState } from 'react'
 import Loader from './components/Loader'
 import { Slide, ToastContainer } from 'react-toastify'
+import Profile from './pages/Profile'
 
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='/contact' element={<Contact/>}/>
          <Route path='/login' element={<Auth/>}/> 
          <Route path='/register' element={<Auth insideRegister={true}/>}/>
+         <Route path='/profile' element={<Profile/>}/>
 
           <Route path='/*' element={<Pnf/>}/>
     </Routes>
