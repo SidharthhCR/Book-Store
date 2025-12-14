@@ -31,7 +31,7 @@ const Footer = () => {
        
         </div>
         <div className='h-[6vh] bg-black text-white text-center'>
-          <h1>Copyright © 2023 All rights reserved | This website is made with by  ASHKAR S</h1>
+          <h1>Copyright © 2023 All rights reserved | This website is made with by  Sidharth CR</h1>
 
         </div>
 
