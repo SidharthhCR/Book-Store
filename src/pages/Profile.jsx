@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
+
+
 import { addBook } from "../services/allApi";
 import { FaEdit } from "react-icons/fa";
 import { FaCheckCircle } from "react-icons/fa";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+
 
 const Profile = () => {
   const [sellBookFlag, setSellBookFlaf] = useState(true);
   const [bookstatusFlag, setbookStausFlag] = useState(false);
   const [purchaseHistoryFlag, setPurchaseHistoryFlag] = useState(false);
-  const [preview, setPreview] = useState(
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg_ri9E8XxXRafeIMA4QGosabTMk_wP7pTDQ&s"
+  const [preview, setPreview] = useState("https://img.freepik.com/premium-vector/illustration-upload_498740-5719.jpg"
   );
 
   const[previewArray,setPreviewArray] = useState([])
@@ -61,8 +63,8 @@ const Profile = () => {
         }
       }
 
-      let apiRes = await addBook(reqBody,headers)
-      console.log(apiRes)
+      let apiResponse = await addBook(reqBody,headers)
+      console.log(apiResponse)
 
     }catch(err){
       console.log(err)
@@ -220,7 +222,7 @@ const Profile = () => {
                         {
                           previewArray.length<3 && <label htmlFor="addImg" >
                       <input type="file" className="hidden" id="addImg" onChange={(e) => onImgClick(e)}/>
-                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5Qcf7B5ISJhnSIZUUMYxKEJozr-Lj1YOL3g&s" className="w-10" alt="" />
+                      <img src="https://img.freepik.com/premium-vector/illustration-upload_498740-5719.jpg" className="w-10" alt="" />
                     </label>
                    
                         }
@@ -233,8 +235,12 @@ const Profile = () => {
               </div>
             </div>
           )}
-          {purchaseHistoryFlag && <div>Purchase History</div>}
-          {bookstatusFlag && <div>Book status</div>}
+          {
+          purchaseHistoryFlag && <div>Purchase History</div>
+          }
+          {
+          bookstatusFlag && <div>Book status</div>
+          }
         </div>
       </div>
     </>

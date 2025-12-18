@@ -15,6 +15,18 @@ export const googleLoginAPI = async (reqBody) => {
     return await axiosConfig(`post`, baseURL + '/googleLogin', reqBody)
 }
 
-export const addBook = async (reqBody,reqHeader) => {
-    return await axiosConfig('post', baseURL + '/addBook', reqBody,reqHeader)
+export const addBook = async (reqBody, reqHeader) => {
+    return await axiosConfig('post', baseURL + '/addBook', reqBody, reqHeader)
+}
+
+export const getLimitedBooks = async () => {
+    return await axiosConfig('get', baseURL + '/getSomeBooks', "")
+};
+
+export const getAllBooks = async (reqHeader,searchKey)=>{
+    return await axiosConfig('get',`${baseURL}/getAllBooks/?search=${searchKey}`,"",reqHeader)
+}
+
+export const getSingleBook = async (id,reqHeader)=>{
+    return await axiosConfig('get',`${baseURL}/getSingleBook/${id}`,"",reqHeader)
 }

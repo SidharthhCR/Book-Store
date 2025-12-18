@@ -10,6 +10,7 @@ import { useState } from 'react'
 import Loader from './components/Loader'
 import { Slide, ToastContainer } from 'react-toastify'
 import Profile from './pages/Profile'
+import SingleBook from './pages/SingleBook'
 
 
 
@@ -30,6 +31,7 @@ function App() {
          <Route path='/login' element={<Auth/>}/> 
          <Route path='/register' element={<Auth insideRegister={true}/>}/>
          <Route path='/profile' element={<Profile/>}/>
+         <Route path='/view/:id/book' element={<SingleBook/>}/>
 
           <Route path='/*' element={<Pnf/>}/>
     </Routes>
