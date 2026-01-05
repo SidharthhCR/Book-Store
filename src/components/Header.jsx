@@ -29,11 +29,11 @@ const Header = () => {
                 <h1 className='text-3xl font-bold p-4'>Book Store</h1>
 
                 <div className='flex items-center'>
-                    
+
                     <span><FontAwesomeIcon icon={faInstagram} /></span>
                     <span><FontAwesomeIcon icon={faTwitter} /></span>
                     <span><FontAwesomeIcon icon={faFacebook} /></span>
-                    
+
                     {
                         isLoggedIn ? <Dropdown className='text-black' label={
                             <div>
@@ -41,8 +41,14 @@ const Header = () => {
                             </div>
                         } dismissOnClick={false}>
                             <DropdownItem></DropdownItem>
+                            <div>
+                                <Link to="/profile" className="cursor-pointer">Profile</Link>
+                            </div>
+                            <div>
+                                <button className='cursor-pointer' onClick={onLogoutClick}>Log out</button>
 
-                            <button className='cursor-pointer' onClick={onLogoutClick}>Log out</button>
+                            </div>
+
                         </Dropdown> :
                             <Link to={'/login'}>
                                 <button className='border rounded-3xl font-bold hover:bg-green-500 hover:text-black m-2 p-3'>Login</button></Link>
@@ -51,7 +57,7 @@ const Header = () => {
                 </div>
             </div>
             <div className='bg-blue-950 flex justify-center gap-4 ' style={{ height: '45px' }}>
-               <Link to={'/'}> <button className=' text-white text-xl'>Home</button></Link>
+                <Link to={'/'}> <button className=' text-white text-xl'>Home</button></Link>
                 <Link to={'/books'}><button className=' text-white text-xl'>Books</button></Link>
                 <button className='  text-white text-xl' >Careers</button>
                 <button className='  text-white text-xl'>Contact</button>

@@ -30,3 +30,11 @@ export const getAllBooks = async (reqHeader,searchKey)=>{
 export const getSingleBook = async (id,reqHeader)=>{
     return await axiosConfig('get',`${baseURL}/getSingleBook/${id}`,"",reqHeader)
 }
+
+export const getUserDetails = async (reqHeader)=>{
+    return await axiosConfig('get',`${baseURL}/userDetails`,"",reqHeader)
+}
+
+export const updateProfile=async(id,reqBody,reqHeader)=>{
+    return await axiosConfig('patch',`${baseURL}/${id}/updateProfile`,reqBody,reqHeader)
+}

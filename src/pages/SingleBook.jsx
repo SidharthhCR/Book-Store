@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { getSingleBook } from '../services/allApi';
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "flowbite-react";
+import { baseURL } from '../services/baseURL';
+
+
 
 
 
 const SingleBook = () => {
 const[bookData,setBookData]=useState({})
+ const [openModal, setOpenModal] = useState(false);
 
  useEffect(() => {
     getData();
@@ -62,10 +67,18 @@ const[bookData,setBookData]=useState({})
             <div className='grid grid-cols-1 mt-10'>
                 <img className='h-[300px] mx-[300px]  rounded-2xl p-2 mt-5' src={bookData.imageURL} alt="" />
             </div>
-
+            </div>
+            <div>
+              <button  onClick={() => setOpenModal(true)} className='bg-green-500 text-white rounded-lg px-4 py-2 mt-4'>More Images</button>
+            </div>
+        
+          </div>
+          <div className='flex justify-center'>
+            <Link className='bg-blue-500 text-white rounded-lg px-4 py-2' to="/books">Go Back</Link>
+             <button className='bg-green-500 text-white rounded-lg px-4 py-1 ml-4' type="button">Buy Now</button>
           </div>
           
-       </div>
+       
        
             
         
@@ -73,7 +86,24 @@ const[bookData,setBookData]=useState({})
         </div>
       
     }
-
+<Modal className='mx-60' show={openModal} onClose={() => setOpenModal(false)}>
+        <ModalHeader className='bg-gray-600 text-3xl' >Uploaded Images</ModalHeader>
+        <ModalBody className='bg-gray-600  '>
+          <div className="space-y-6 flex justify-around">
+           {
+            bookData?.uploadedImages?.map((eachImage)=>(
+              <img src={`${baseURL}/uploads/${eachImage}`} alt="" />
+            ))
+           }
+          </div>
+        </ModalBody>
+        <ModalFooter className='bg-gray-500'>
+          <Button onClick={() => setOpenModal(false)}>I accept</Button>
+          <Button color="alternative" onClick={() => setOpenModal(false)}>
+            Decline
+          </Button>
+        </ModalFooter>
+      </Modal>
     
 
 
